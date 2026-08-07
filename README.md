@@ -1,9 +1,13 @@
 # clackr
 
 [![CI](https://github.com/karan-vk/clackr/actions/workflows/ci.yml/badge.svg)](https://github.com/karan-vk/clackr/actions/workflows/ci.yml)
-[![crates.io](https://img.shields.io/crates/v/clackr.svg)](https://crates.io/crates/clackr)
-[![docs.rs](https://img.shields.io/docsrs/clackr)](https://docs.rs/clackr)
+[![release](https://img.shields.io/github/v/release/karan-vk/clackr)](https://github.com/karan-vk/clackr/releases/latest)
 [![license](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
+
+<!--
+The crates.io and docs.rs badges go back once the crate is published; see
+issue "Publish clackr to crates.io".
+-->
 
 A fast, good-looking [MonkeyType](https://monkeytype.com)-style typing test
 for your terminal — built with [ratatui](https://ratatui.rs).
@@ -36,12 +40,6 @@ see that workflow's comments for why.
 
 ## Install
 
-### From crates.io
-
-```bash
-cargo install clackr
-```
-
 ### Prebuilt binaries
 
 Prebuilt binaries are published on the
@@ -56,8 +54,8 @@ Prebuilt binaries are published on the
 | macOS (Apple Silicon)   | `aarch64-apple-darwin`        |
 
 Linux builds are fully static (musl), so there are no runtime library
-dependencies. There is currently no prebuilt Intel-Mac binary — use
-`cargo install clackr` on Intel Macs.
+dependencies. There is currently no prebuilt Intel-Mac binary — build from
+source on Intel Macs.
 
 **Shell installer** (Linux, macOS):
 
