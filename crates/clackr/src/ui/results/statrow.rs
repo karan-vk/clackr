@@ -170,7 +170,7 @@ mod tests {
 
     #[test]
     fn a_narrow_terminal_drops_columns_rather_than_truncating_headings() {
-        // "consiste" and "characte" read as corruption, not as a stat row.
+        // A heading cut off mid-word reads as corruption, not as a stat row.
         let text = render(40, 12, &Summary::fixture(), Fidelity::Full);
         assert!(!text.contains("consiste\n"), "{text}");
         assert!(text.contains("consistency"), "{text}");

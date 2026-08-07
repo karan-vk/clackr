@@ -332,7 +332,7 @@ impl Engine {
         }
         let Some(ix) = self.current_ix() else {
             // Time mode ran out of buffered words; the caller owes us an
-            // `append_words`. Swallow the keystroke rather than mis-score it.
+            // `append_words`. Swallow the keystroke rather than score it wrongly.
             return Key::IGNORED;
         };
         let stop_on_error = self.params.stop_on_error;

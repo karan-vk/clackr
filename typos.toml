@@ -2,12 +2,23 @@
 # https://github.com/crate-ci/typos
 
 [files]
-# Word lists (assets/languages/*.txt) and the quote corpus
-# (assets/quotes/english.json) are sourced from period text and ranked
-# corpora; they legitimately contain archaic spellings, proper nouns, and
-# words a spellchecker will flag as typos. Excluded wholesale rather than
-# chasing individual false positives.
-extend-exclude = ["assets/**"]
+# The word list (assets/languages/*.txt) and the quote corpus
+# (assets/quotes/english.toml) are a curated compilation and public-domain
+# excerpts; they legitimately contain archaic spellings and proper nouns a
+# spellchecker will flag. Excluded wholesale rather than chasing individual
+# false positives.
+#
+# Snapshot files are rendered terminal output. At narrow widths the stat row
+# truncates its headings ("characte", "consisten"), and a spellchecker reads
+# every truncation as a misspelling.
+extend-exclude = ["assets/**", "**/snapshots/**"]
 
-[default]
-extend-ignore-identifiers-re = []
+[default.extend-words]
+# The TUI library this is built on.
+ratatui = "ratatui"
+# Deliberate typos. The engine's tests are keystroke transcripts, so they have
+# to contain mistyped words — that is the behaviour under test.
+teh = "teh"
+# From the combining-mark test: "cafe\u{301}" must render as "café", so the
+# bare stem appears in the source.
+caf = "caf"
