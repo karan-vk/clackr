@@ -1,0 +1,172 @@
+name: CI
+
+# Runs on every push to main, every PR, and every merge-queue check. See the
+# `ci-ok` job at the bottom: branch protection should require *only* that
+# one check, not every job in this matrix individually — that way adding,
+# renaming, or removing a runner leg (e.g. when macos-14 -> macos-15) never
+# requires touching repo settings.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
+
+# Cancel superseded runs on PRs (new pushes to the same PR make the old run
+# pointless), but never cancel a push-to-main or merge-queue run — those
+# should always run to completion.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  # Incremental compilation adds overhead and cache-invalidation surface in
+  # CI, where every job is a cold, single-shot build. rust-cache handles the
+  # real caching; incremental only helps repeated local builds.
+  CARGO_INCREMENTAL: 0
+  RUST_BACKTRACE: 1
+
+jobs:
+  fmt:
+    name: fmt
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo fmt --all --check
+
+  clippy:
+    name: clippy
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
+
+  # CRITICAL: GitHub-hosted runners have no TTY. Any test that opens a real
+  # terminal (raw mode, an actual crossterm/ratatui backend) will hang the
+  # job rather than fail it. Rendering is exercised through
+  # `ratatui::backend::TestBackend`, which needs no terminal at all; by
+  # design, only `crates/clackr/src/main.rs` ever touches raw mode, and it
+  # is intentionally thin and not covered by these tests. If a test here
+  # ever starts hanging in CI but not locally, this is almost certainly why.
+  test:
+    name: test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # The five native GitHub-hosted runners covering clackr's release
+        # matrix (linux x64/arm64, windows x64/arm64, macos arm64). All
+        # verified to exist as free-tier hosted labels. Never `*-latest`
+        # (moves under us) and never `macos-14` (retired 2026-11-02).
+        os:
+          - ubuntu-24.04
+          - ubuntu-24.04-arm
+          - windows-2025
+          - windows-11-arm
+          - macos-15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.os }}
+      - run: cargo test --workspace --all-features --locked
+
+  msrv:
+    name: msrv (1.88.0)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      # Pinned to the exact MSRV (set by ratatui 0.30.2's own rust-version).
+      # `dtolnay/rust-toolchain` has no useful semver tags for this action
+      # itself; `@1.88.0` here selects the *toolchain* version, which is
+      # what matters. Deliberately not committing a rust-toolchain.toml:
+      # that file takes precedence over this action's toolchain selection
+      # and would silently turn every job, including this one, into an MSRV
+      # build.
+      - uses: dtolnay/rust-toolchain@1.88.0
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo check --workspace --all-targets --locked
+
+  docs:
+    name: docs
+    runs-on: ubuntu-24.04
+    env:
+      RUSTDOCFLAGS: -D warnings
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo doc --workspace --no-deps --locked
+
+  typos:
+    name: typos
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: crate-ci/typos@v1.49.0
+
+  deny:
+    name: deny
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      # Runs `cargo deny check bans licenses sources advisories` against
+      # deny.toml. The `advisories` check subsumes what `cargo audit` would
+      # give us, so we don't run that separately.
+      - uses: EmbarkStudios/cargo-deny-action@v2
+        with:
+          command: check bans licenses sources advisories
+
+  # Non-blocking: coverage is informational, not a merge gate, and is
+  # deliberately excluded from ci-ok's `needs:` below. A flaky Codecov
+  # upload should never block a PR.
+  coverage:
+    name: coverage
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: llvm-tools
+      - uses: Swatinem/rust-cache@v2
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-llvm-cov
+      - run: cargo llvm-cov --workspace --all-features --locked --lcov --output-path lcov.info
+      - uses: codecov/codecov-action@v7
+        with:
+          files: lcov.info
+          fail_ci_if_error: false
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  # The single required status check for branch protection / merge queue.
+  # Depends on every job above *except* coverage (informational, see that
+  # job's comment). Because this is the only check branch protection needs
+  # to name, the `test` matrix (or any other job's runner set) can grow,
+  # shrink, or get renamed without ever touching repo settings again.
+  ci-ok:
+    name: ci-ok
+    if: always()
+    needs: [fmt, clippy, test, msrv, docs, typos, deny]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check that all required jobs succeeded
+        run: |
+          if [[ "${{ contains(needs.*.result, 'failure') }}" == "true" ]] || \
+             [[ "${{ contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+            echo "One or more required jobs failed or were cancelled." >&2
+            exit 1
+          fi

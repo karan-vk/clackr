@@ -1,0 +1,8 @@
+name = "amber dark"
+bg = "#323437"
+main = "#e2b714"
+sub = "#646669"
+sub_alt = "#2c2e31"
+text = "#d1d0c5"
+error = "#ca4754"
+error_extra = "#7e2a33"

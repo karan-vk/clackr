@@ -1,0 +1,52 @@
+# cargo-deny configuration. Run via `EmbarkStudios/cargo-deny-action` in CI
+# (job `deny`), covering: bans, licenses, sources, advisories. This subsumes
+# `cargo audit` — advisories are checked here too.
+#
+# https://embarkstudios.github.io/cargo-deny/
+
+[graph]
+all-features = true
+
+[advisories]
+# Fail the build on any known security advisory, unmaintained crate, or
+# yanked crate. This is the one category where we want a hard failure.
+yanked = "deny"
+ignore = []
+
+[licenses]
+version = 2
+# Permissive licenses we accept for dependencies. clackr itself is dual
+# MIT OR Apache-2.0; the entries below are what the wider dependency tree
+# (crossterm, ratatui, serde, etc.) commonly uses.
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unicode-3.0",
+    "Zlib",
+    "MPL-2.0",
+]
+confidence-threshold = 0.8
+
+[bans]
+# `multiple-versions` is deliberately a *warning*, not a hard failure.
+# In a dependency tree this size, transitive crates routinely disagree on
+# minor versions of things like `bitflags` or `windows-sys`, and Dependabot
+# regularly bumps one leaf without the others. Failing the build on that is
+# pure churn with no security benefit — it doesn't catch anything `advisories`
+# wouldn't, and it blocks routine, otherwise-safe dependency PRs. Duplicate
+# versions still show up in `cargo deny check bans` output for awareness.
+multiple-versions = "warn"
+wildcards = "warn"
+deny = []
+skip = []
+skip-tree = []
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []

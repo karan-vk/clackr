@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or discussion
+    url: https://github.com/karan-vk/clackr/discussions
+    about: Ask questions and discuss ideas that aren't a specific bug or feature request.

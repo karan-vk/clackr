@@ -1,0 +1,13 @@
+# typos configuration. Run via `crate-ci/typos` in CI (job `typos`).
+# https://github.com/crate-ci/typos
+
+[files]
+# Word lists (assets/languages/*.txt) and the quote corpus
+# (assets/quotes/english.json) are sourced from period text and ranked
+# corpora; they legitimately contain archaic spellings, proper nouns, and
+# words a spellchecker will flag as typos. Excluded wholesale rather than
+# chasing individual false positives.
+extend-exclude = ["assets/**"]
+
+[default]
+extend-ignore-identifiers-re = []

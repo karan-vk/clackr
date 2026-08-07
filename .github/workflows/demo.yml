@@ -1,0 +1,46 @@
+name: Demo GIF
+
+# Manual-dispatch only. If this ran on every push/merge to main, a
+# regenerated demo GIF would need to be committed (or repeatedly
+# re-uploaded) on every merge, permanently bloating git history with large
+# binary diffs for a file that changes rarely and isn't load-bearing for
+# tests or releases. Instead, a maintainer triggers this by hand ahead of a
+# release; the GIF comes back as a workflow artifact rather than a commit,
+# gets downloaded, and is attached to the GitHub Release as a release
+# asset. README.md should link to that release-asset URL — the GIF itself
+# should never be committed into the repository.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  demo:
+    name: demo
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Build release binary
+        run: cargo build --release --locked -p clackr
+      - name: Put release binary on PATH
+        run: echo "$GITHUB_WORKSPACE/target/release" >> "$GITHUB_PATH"
+      - name: Record demo.tape
+        uses: charmbracelet/vhs-action@v2
+        with:
+          path: demo.tape
+      # demo.tape's `Output demo.gif` directive writes the GIF to the repo
+      # root; upload-artifact is the standard first-party GitHub action for
+      # handing a build output back to the run rather than committing it.
+      - name: Upload GIF as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-gif
+          path: demo.gif
+          retention-days: 14

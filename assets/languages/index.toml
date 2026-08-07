@@ -1,0 +1,13 @@
+# Metadata for every embedded word list. Keyed by [[language]] so more
+# languages can be added later (a deferred v2 feature) without touching any
+# Rust code -- build.rs walks this table and embeds whatever it finds.
+#
+# `id` must match the `.txt` filename in this directory (without extension)
+# and the key build.rs uses in `words::language()`.
+
+[[language]]
+id = "english1k"
+name = "English 1k"
+rtl = false
+source = "https://www.gutenberg.org (see ../LICENSES.md)"
+license = "Public Domain (US)"

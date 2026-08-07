@@ -1,0 +1,8 @@
+name = "mono"
+bg = "#1c1c1c"
+main = "#ffffff"
+sub = "#767676"
+sub_alt = "#2e2e2e"
+text = "#d0d0d0"
+error = "#9e9e9e"
+error_extra = "#5a5a5a"

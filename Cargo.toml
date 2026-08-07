@@ -1,0 +1,42 @@
+[workspace]
+members = ["crates/clackr-core", "crates/clackr"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+authors = ["Karan Vijayakumar <aitf-kv@cogent.co.jp>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/karan-vk/clackr"
+homepage = "https://github.com/karan-vk/clackr"
+
+[workspace.dependencies]
+clackr-core = { version = "0.1.0", path = "crates/clackr-core" }
+ratatui = "0.30.2"
+clap = { version = "4.6.6", features = ["derive"] }
+color-eyre = "0.6.5"
+directories = "6.0.0"
+rand = "0.10.2"
+serde = { version = "1.0.229", features = ["derive"] }
+toml = "1.1.4"
+thiserror = "2"
+unicode-segmentation = "1.12"
+unicode-width = "0.2.2"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = "symbols"
+# Deliberately NOT panic = "abort": the terminal-restore panic hook and Drop
+# guard must run, otherwise a crash leaves the user's terminal in raw mode.
+panic = "unwind"
+
+[profile.dev]
+opt-level = 1
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"

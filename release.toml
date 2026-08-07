@@ -1,0 +1,24 @@
+# cargo-release configuration.
+#
+# clackr is a workspace with two crates (clackr-core, clackr) that move
+# together and share `workspace.package.version`. This file keeps
+# `cargo release` from trying to version/tag/publish them independently,
+# and keeps CHANGELOG.md (Keep a Changelog format) in sync — which matters
+# because `dist` parses CHANGELOG.md for GitHub release notes.
+#
+# https://github.com/crate-ci/cargo-release
+
+# Single shared tag for the workspace, e.g. `v0.1.0`. `dist` is configured
+# to build off tags matching this shape.
+shared-version = true
+consolidate-commits = true
+tag-name = "v{{version}}"
+tag-message = "clackr {{version}}"
+pre-release-commit-message = "chore(release): {{version}}"
+
+# Publish clackr-core before clackr, since clackr depends on it.
+publish = true
+
+pre-release-replacements = [
+  { file = "CHANGELOG.md", search = "## \\[Unreleased\\]", replace = "## [Unreleased]\n\n## [{{version}}] - {{date}}", exactly = 1 },
+]

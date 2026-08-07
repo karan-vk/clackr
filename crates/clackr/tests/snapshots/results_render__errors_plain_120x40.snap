@@ -1,0 +1,44 @@
+---
+source: crates/clackr/tests/results_render.rs
+expression: "render(w, h, &summary, fidelity)"
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wpm 55    raw  avg 61  peak 84  low 36
+acc 88%
+test type: time 30   raw: 74   time: 10s
+characters: 45/6/2/1   consistency: 78%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                               tab  next test    esc  menu

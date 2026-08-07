@@ -1,0 +1,251 @@
+# clackr's English quote corpus.
+#
+# Source: Project Gutenberg plain-text editions of ten pre-1929 novels,
+# all confirmed US public domain (see ../LICENSES.md for the per-title
+# provenance table). Gutenberg's own header/footer boilerplate was
+# stripped before extraction; only the public-domain book text remains
+# below. Typography (curly quotes, em dashes) was normalized to plain
+# ASCII so every quote is typeable on any keyboard.
+#
+# `length` is derived from `mode::QuoteLength::accepts` and is checked
+# against the actual character count in words::quotes tests.
+
+[[quote]]
+text = "It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife."
+author = "Jane Austen"
+source = "Pride and Prejudice"
+length = "medium"
+
+[[quote]]
+text = "There is a stubbornness about me that never can bear to be frightened at the will of others. My courage always rises with every attempt to intimidate me."
+author = "Jane Austen"
+source = "Pride and Prejudice"
+length = "medium"
+
+[[quote]]
+text = "\"In vain have I struggled. It will not do. My feelings will not be repressed. You must allow me to tell you how ardently I admire and love you.\""
+author = "Jane Austen"
+source = "Pride and Prejudice"
+length = "medium"
+
+[[quote]]
+text = "\"Curiouser and curiouser!\" cried Alice"
+author = "Lewis Carroll"
+source = "Alice's Adventures in Wonderland"
+length = "short"
+
+[[quote]]
+text = "\"Begin at the beginning,\" the King said gravely, \"and go on till you come to the end: then stop.\""
+author = "Lewis Carroll"
+source = "Alice's Adventures in Wonderland"
+length = "short"
+
+[[quote]]
+text = "\"Oh, you can't help that,\" said the Cat: \"we're all mad here. I'm mad. You're mad.\" \"How do you know I'm mad?\" said Alice. \"You must be,\" said the Cat, \"or you wouldn't have come here.\""
+author = "Lewis Carroll"
+source = "Alice's Adventures in Wonderland"
+length = "medium"
+
+[[quote]]
+text = "Nothing is so painful to the human mind as a great and sudden change."
+author = "Mary Shelley"
+source = "Frankenstein"
+length = "short"
+
+[[quote]]
+text = "Learn from me, if not by my precepts, at least by my example, how dangerous is the acquirement of knowledge and how much happier that man is who believes his native town to be the world, than he who aspires to become greater than his nature will allow."
+author = "Mary Shelley"
+source = "Frankenstein"
+length = "medium"
+
+[[quote]]
+text = "It was on a dreary night of November that I beheld the accomplishment of my toils. With an anxiety that almost amounted to agony, I collected the instruments of life around me, that I might infuse a spark of being into the lifeless thing that lay at my feet. It was already one in the morning; the rain pattered dismally against the panes, and my candle was nearly burnt out, when, by the glimmer of the half-extinguished light, I saw the dull yellow eye of the creature open; it breathed hard, and a convulsive motion agitated its limbs."
+author = "Mary Shelley"
+source = "Frankenstein"
+length = "long"
+
+[[quote]]
+text = "\"Listen to them--the children of the night. What music they make!\""
+author = "Bram Stoker"
+source = "Dracula"
+length = "short"
+
+[[quote]]
+text = "\"Welcome to my house. Come freely. Go safely; and leave something of the happiness you bring!\""
+author = "Bram Stoker"
+source = "Dracula"
+length = "short"
+
+[[quote]]
+text = "\"I am Dracula; and I bid you welcome, Mr. Harker, to my house. Come in; the night air is chill, and you must need to eat and rest.\""
+author = "Bram Stoker"
+source = "Dracula"
+length = "medium"
+
+[[quote]]
+text = "I have no data yet. It is a capital mistake to theorise before one has data. Insensibly one begins to twist facts to suit theories, instead of theories to suit facts."
+author = "Arthur Conan Doyle"
+source = "The Adventures of Sherlock Holmes"
+length = "medium"
+
+[[quote]]
+text = "\"Here is my lens. You know my methods. What can you gather yourself as to the individuality of the man who has worn this article?\""
+author = "Arthur Conan Doyle"
+source = "The Adventures of Sherlock Holmes"
+length = "medium"
+
+[[quote]]
+text = "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way--in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only."
+author = "Charles Dickens"
+source = "A Tale of Two Cities"
+length = "long"
+
+[[quote]]
+text = "\"It is a far, far better thing that I do, than I have ever done; it is a far, far better rest that I go to than I have ever known.\""
+author = "Charles Dickens"
+source = "A Tale of Two Cities"
+length = "medium"
+
+[[quote]]
+text = "\"You know that you are recalled to life?\" \"They tell me so.\""
+author = "Charles Dickens"
+source = "A Tale of Two Cities"
+length = "short"
+
+[[quote]]
+text = "Call me Ishmael."
+author = "Herman Melville"
+source = "Moby-Dick"
+length = "short"
+
+[[quote]]
+text = "Yes, as every one knows, meditation and water are wedded for ever."
+author = "Herman Melville"
+source = "Moby-Dick"
+length = "short"
+
+[[quote]]
+text = "He's a queer man, Captain Ahab--so some think--but a good one. Oh, thou'lt like him well enough; no fear, no fear. He's a grand, ungodly, god-like man, Captain Ahab; doesn't speak much; but, when he does speak, then you may well listen."
+author = "Herman Melville"
+source = "Moby-Dick"
+length = "medium"
+
+[[quote]]
+text = "\"To define is to limit.\""
+author = "Oscar Wilde"
+source = "The Picture of Dorian Gray"
+length = "short"
+
+[[quote]]
+text = "Only one thing in the world worse than being talked about, and that is not being talked about."
+author = "Oscar Wilde"
+source = "The Picture of Dorian Gray"
+length = "short"
+
+[[quote]]
+text = "The only way to get rid of a temptation is to yield to it. Resist it, and your soul grows sick with longing for the things it has forbidden to itself, with desire for what its monstrous laws have made monstrous and unlawful."
+author = "Oscar Wilde"
+source = "The Picture of Dorian Gray"
+length = "medium"
+
+[[quote]]
+text = "\"Marilla, isn't it nice to think that tomorrow is a new day with no mistakes in it yet?\""
+author = "L. M. Montgomery"
+source = "Anne of Green Gables"
+length = "short"
+
+[[quote]]
+text = "I felt that he was a kindred spirit as soon as ever I saw him."
+author = "L. M. Montgomery"
+source = "Anne of Green Gables"
+length = "short"
+
+[[quote]]
+text = "Tom said to himself that it was not such a hollow world, after all. He had discovered a great law of human action, without knowing it--namely, that in order to make a man or a boy covet a thing, it is only necessary to make the thing difficult to attain. If he had been a great and wise philosopher, like the writer of this book, he would now have comprehended that Work consists of whatever a body is obliged to do, and that Play consists of whatever a body is not obliged to do."
+author = "Mark Twain"
+source = "The Adventures of Tom Sawyer"
+length = "long"
+
+[[quote]]
+text = "Tom appeared on the sidewalk with a bucket of whitewash and a long-handled brush. He surveyed the fence, and all gladness left him and a deep melancholy settled down upon his spirit. Thirty yards of board fence nine feet high. Life to him seemed hollow, and existence but a burden."
+author = "Mark Twain"
+source = "The Adventures of Tom Sawyer"
+length = "medium"
+
+[[quote]]
+text = "\"How despicably have I acted!\" she cried. \"I, who have prided myself on my discernment! I, who have valued myself on my abilities! who have often disdained the generous candour of my sister, and gratified my vanity in useless or blameless distrust. How humiliating is this discovery! Yet, how just a humiliation! Had I been in love, I could not have been more wretchedly blind. But vanity, not love, has been my folly. Pleased with the preference of one, and offended by the neglect of the other, on the very beginning of our acquaintance, I have courted prepossession and ignorance, and driven reason away where either were concerned. Till this moment, I never knew myself.\""
+author = "Jane Austen"
+source = "Pride and Prejudice"
+length = "long"
+
+[[quote]]
+text = "I read that every known superstition in the world is gathered into the horseshoe of the Carpathians, as if it were the centre of some sort of imaginative whirlpool."
+author = "Bram Stoker"
+source = "Dracula"
+length = "medium"
+
+[[quote]]
+text = "\"My name is Sherlock Holmes. It is my business to know what other people don't know.\""
+author = "Arthur Conan Doyle"
+source = "The Adventures of Sherlock Holmes"
+length = "short"
+
+[[quote]]
+text = "\"There is nothing more deceptive than an obvious fact,\" he answered, laughing."
+author = "Arthur Conan Doyle"
+source = "The Adventures of Sherlock Holmes"
+length = "short"
+
+[[quote]]
+text = "The artist is the creator of beautiful things. To reveal art and conceal the artist is art's aim. The critic is he who can translate into another manner or a new material his impression of beautiful things. The highest as the lowest form of criticism is a mode of autobiography. Those who find ugly meanings in beautiful things are corrupt without being charming. This is a fault. Those who find beautiful meanings in beautiful things are the cultivated. For these there is hope. They are the elect to whom beautiful things mean only beauty. There is no such thing as a moral or an immoral book. Books are well written, or badly written. That is all."
+author = "Oscar Wilde"
+source = "The Picture of Dorian Gray"
+length = "long"
+
+[[quote]]
+text = "\"The five-thirty train has been in and gone half an hour ago,\" answered that brisk official. \"But there was a passenger dropped off for you--a little girl. She's sitting out there on the shingles. I asked her to go into the ladies' waiting room, but she informed me gravely that she preferred to stay outside. 'There was more scope for imagination,' she said. She's a case, I should say.\""
+author = "L. M. Montgomery"
+source = "Anne of Green Gables"
+length = "long"
+
+[[quote]]
+text = "Liberty, equality, fraternity, or death;--the last, much the easiest to bestow, O Guillotine!"
+author = "Charles Dickens"
+source = "A Tale of Two Cities"
+length = "short"
+
+[[quote]]
+text = "It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off--then, I account it high time to get to sea as soon as I can."
+author = "Herman Melville"
+source = "Moby-Dick"
+length = "long"
+
+[[quote]]
+text = "By the dim and yellow light of the moon, as it forced its way through the window shutters, I beheld the wretch--the miserable monster whom I had created."
+author = "Mary Shelley"
+source = "Frankenstein"
+length = "medium"
+
+[[quote]]
+text = "The rabbit-hole went straight on like a tunnel for some way, and then dipped suddenly down, so suddenly that Alice had not a moment to think about stopping herself before she found herself falling down a very deep well."
+author = "Lewis Carroll"
+source = "Alice's Adventures in Wonderland"
+length = "medium"
+
+[[quote]]
+text = "He has all along, since his coming, been trying his power, slowly but surely; that big child-brain of his is working. Well for us, it is, as yet, a child-brain; for had he dared, at the first, to attempt certain things he would long ago have been beyond our power. However, he means to succeed, and a man who has centuries before him can afford to wait and to go slow."
+author = "Bram Stoker"
+source = "Dracula"
+length = "long"
+
+[[quote]]
+text = "Shortly Tom came upon the juvenile pariah of the village, Huckleberry Finn, son of the town drunkard. Huckleberry was cordially hated and dreaded by all the mothers of the town, because he was idle and lawless and vulgar and bad--and because all their children admired him so, and delighted in his forbidden society, and wished they dared to be like him."
+author = "Mark Twain"
+source = "The Adventures of Tom Sawyer"
+length = "long"
+
+[[quote]]
+text = "There's such a lot of different Annes in me. I sometimes think that is why I'm such a troublesome person. If I was just the one Anne it would be ever so much more comfortable, but then it wouldn't be half so interesting."
+author = "L. M. Montgomery"
+source = "Anne of Green Gables"
+length = "medium"

@@ -1,0 +1,36 @@
+[package]
+name = "clackr-core"
+description = "Terminal-free typing-test engine, stats, and word sources for clackr."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+readme = "../../README.md"
+keywords = ["typing", "wpm", "typing-test"]
+categories = ["text-processing"]
+
+# This crate is deliberately free of terminal, filesystem, and clock
+# dependencies. Do not add ratatui, crossterm, or std::time::Instant usage here.
+[dependencies]
+rand.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+unicode-segmentation.workspace = true
+unicode-width.workspace = true
+# Parses the embedded theme and quote TOML assets at runtime (words::theme,
+# words::quotes). Moved here from [dev-dependencies] for M3; see
+# assets/LICENSES.md / the M3 report for why serde_json was not added
+# instead (quotes ship as TOML, not JSON).
+toml.workspace = true
+
+[dev-dependencies]
+proptest = "1"
+
+# build.rs validates the embedded theme/quote TOML at build time and needs
+# its own copy of the dependency: [build-dependencies] and [dependencies]
+# are separate graphs even though both point at the same crate.
+[build-dependencies]
+toml.workspace = true

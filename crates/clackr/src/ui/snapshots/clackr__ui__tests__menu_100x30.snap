@@ -1,0 +1,22 @@
+---
+source: crates/clackr/src/ui/mod.rs
+expression: "render(&menu_app(w, h), w, h)"
+---
+
+
+
+
+
+
+
+
+
+
+
+             clackr
+
+             > mode     time  words  quote  zen
+               seconds  15  30  60  120
+               theme    amber-dark  catppuccin-mocha  dracula  gruvbox-dark  mono  nord
+
+             enter  start      arrows  choose      q  quit

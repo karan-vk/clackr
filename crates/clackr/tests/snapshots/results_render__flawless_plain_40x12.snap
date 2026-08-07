@@ -1,0 +1,16 @@
+---
+source: crates/clackr/tests/results_render.rs
+expression: "render(w, h, &Summary::fixture(), fidelity)"
+---
+
+
+
+wpm 61
+acc 100%
+test type: time 30   raw: 61   time: 10s
+characters: 42/0/0/0   consistency: 94%
+
+
+
+
+       tab  next test    esc  menu

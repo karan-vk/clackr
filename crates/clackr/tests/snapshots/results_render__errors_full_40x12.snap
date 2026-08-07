@@ -1,0 +1,16 @@
+---
+source: crates/clackr/tests/results_render.rs
+expression: "render(w, h, &summary, fidelity)"
+---
+wpm 55
+acc 88%
+
+
+
+
+test type    raw           characters
+time 30      74            45/6/2/1
+consistency  time
+78%          10s
+
+       tab  next test    esc  menu

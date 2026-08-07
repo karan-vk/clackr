@@ -1,0 +1,8 @@
+name = "gruvbox dark"
+bg = "#282828"
+main = "#fabd2f"
+sub = "#928374"
+sub_alt = "#3c3836"
+text = "#ebdbb2"
+error = "#fb4934"
+error_extra = "#87372d"

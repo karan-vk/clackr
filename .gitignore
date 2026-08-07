@@ -1,0 +1,17 @@
+/target
+/dist
+
+# Backup files left behind by some `cargo fix` / rustfmt workflows.
+**/*.rs.bk
+
+# Windows debug symbols and coverage instrumentation artifacts.
+*.pdb
+*.profraw
+lcov.info
+
+.DS_Store
+
+# NOTE: Cargo.lock is intentionally NOT ignored. This workspace produces a
+# binary (clackr), and binaries should commit their lockfile so builds are
+# reproducible across contributors and CI. See:
+# https://doc.rust-lang.org/cargo/faq.html#why-do-binaries-have-cargolock-in-version-control-but-not-libraries

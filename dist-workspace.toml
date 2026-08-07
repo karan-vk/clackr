@@ -1,0 +1,44 @@
+[workspace]
+members = ["cargo:."]
+
+# Config for 'dist'
+[dist]
+# The preferred dist version to use in CI (Cargo.toml SemVer syntax)
+cargo-dist-version = "0.32.0"
+# CI backends to support
+ci = "github"
+# The installers to generate for each app
+installers = ["shell", "powershell"]
+# Target platforms to build apps for (Rust target-triple syntax).
+#
+# Linux ships as musl so the binary is fully static: clackr's dependency tree is
+# pure Rust with no C in it, so there is nothing to gain from glibc and a lot to
+# gain from a binary that runs on Alpine, on distroless, and on any glibc
+# vintage without patchelf.
+#
+# There is deliberately no x86_64-apple-darwin: Apple Silicon only, per the
+# project's stated support matrix.
+targets = [
+    "x86_64-unknown-linux-musl",
+    "aarch64-unknown-linux-musl",
+    "x86_64-pc-windows-msvc",
+    "aarch64-pc-windows-msvc",
+    "aarch64-apple-darwin",
+]
+
+# Every target below has a free native GitHub-hosted runner, so nothing here is
+# cross-compiled. These overrides are NOT cosmetic — dist's own defaults would
+# put macOS on `macos-14` (retired 2026-11-02) and would cross-compile Windows
+# arm64 through a cargo-xwin container instead of using the native runner.
+[dist.github-custom-runners]
+x86_64-unknown-linux-musl = "ubuntu-24.04"
+aarch64-unknown-linux-musl = "ubuntu-24.04-arm"
+x86_64-pc-windows-msvc = "windows-2025"
+aarch64-pc-windows-msvc = "windows-11-arm"
+aarch64-apple-darwin = "macos-15"
+
+# musl-gcc is not preinstalled on the Ubuntu images. Installing it natively on
+# each Linux runner (rather than cross-compiling) is what keeps the musl build
+# free of the usual `cannot find crti.o` class of failure.
+[dist.dependencies.apt]
+musl-tools = "*"

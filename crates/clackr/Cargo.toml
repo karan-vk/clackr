@@ -1,0 +1,38 @@
+[package]
+name = "clackr"
+description = "A MonkeyType-style typing test for your terminal."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/clackr"
+readme = "../../README.md"
+keywords = ["typing", "tui", "ratatui", "terminal", "cli"]
+categories = ["command-line-utilities", "text-processing"]
+exclude = ["../../assets/*.gif", "../../demo.tape"]
+
+[[bin]]
+name = "clackr"
+path = "src/main.rs"
+
+[dependencies]
+clackr-core.workspace = true
+# crossterm is used via `ratatui::crossterm` so its version can never desync
+# from the ratatui-crossterm backend.
+ratatui.workspace = true
+clap.workspace = true
+color-eyre.workspace = true
+directories.workspace = true
+# Word generation lives in clackr-core, but the RNG that drives it is the
+# caller's: the core crate never touches a randomness source.
+rand.workspace = true
+serde.workspace = true
+toml.workspace = true
+# Line wrapping measures rendered width, not character count.
+unicode-width.workspace = true
+
+[dev-dependencies]
+insta = "1"

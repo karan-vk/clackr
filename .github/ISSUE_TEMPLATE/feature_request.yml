@@ -1,0 +1,45 @@
+name: Feature request
+description: Suggest an idea for clackr
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing: punctuation & numbers modifiers, additional
+        language word lists (english5k/10k, code word sets), result
+        history / personal bests, a Homebrew tap, and `cargo binstall`
+        metadata are already known, deliberately-deferred follow-ups —
+        search open issues first, your vote/comment on an existing one is
+        more useful than a duplicate.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: What are you trying to do that clackr doesn't support today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What would you like clackr to do instead?
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Mockups, links to how another tool does this, etc.
+    validations:
+      required: false

@@ -1,0 +1,34 @@
+version: 2
+
+updates:
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    # Bundle routine minor/patch bumps into one PR instead of one-per-crate
+    # noise; anything semver-major still opens its own PR for a real look.
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    # Wait 7 days after a version is published before Dependabot will
+    # propose it. Crates yanked within hours of publishing (broken release,
+    # accidental publish, etc.) would otherwise churn the PR queue with a
+    # bump-then-immediate-revert.
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    cooldown:
+      default-days: 7
